@@ -8,7 +8,14 @@
 <meta name="theme-color" content="#0a0a0a">
 
 <header class="top">
+  <button class="sel" id="selBtn" aria-expanded="false"><span id="selName">Заметки</span><span class="chev">▾</span></button>
   <span class="brand">Блокно</span>
+  <div class="menu" id="menu" hidden>
+    <button class="tab on" data-tab="notes">Заметки</button>
+    <button class="tab" data-tab="tasks">Задачи</button>
+    <button class="tab" data-tab="budget">Бюджет</button>
+    <button class="tab" data-tab="plans">Планы</button>
+  </div>
 </header>
 
 <main>
@@ -92,12 +99,5 @@
     <div class="list" id="goalList"></div>
   </section>
 </main>
-
-<nav class="tabs">
-  <button class="tab on" data-tab="notes">Заметки</button>
-  <button class="tab" data-tab="tasks">Задачи</button>
-  <button class="tab" data-tab="budget">Бюджет</button>
-  <button class="tab" data-tab="plans">Планы</button>
-</nav>
 
 <script src="app.js"></script>

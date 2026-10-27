@@ -106,9 +106,26 @@
   function show(name) {
     document.querySelectorAll("[data-view]").forEach(function (v) { v.hidden = v.dataset.view !== name; });
     document.querySelectorAll("[data-tab]").forEach(function (b) { b.classList.toggle("on", b.dataset.tab === name); });
+    var item = document.querySelector('.menu [data-tab="' + name + '"]');
+    if (item) $("#selName").textContent = item.textContent;
+    closeMenu();
+  }
+  function closeMenu() {
+    $("#menu").hidden = true;
+    $("#selBtn").setAttribute("aria-expanded", "false");
   }
   document.querySelectorAll("[data-tab]").forEach(function (b) {
     b.addEventListener("click", function () { show(b.dataset.tab); });
+  });
+  $("#selBtn").addEventListener("click", function (e) {
+    e.stopPropagation();
+    var m = $("#menu");
+    m.hidden = !m.hidden;
+    this.setAttribute("aria-expanded", String(!m.hidden));
+  });
+  document.addEventListener("click", function (e) {
+    var m = $("#menu");
+    if (!m.hidden && !m.contains(e.target)) closeMenu();
   });
 
   // Auto-grow and heading styling for note fields
