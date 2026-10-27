@@ -1,0 +1,109 @@
+/* Блокно: чёрно-серый минимализм, оптимизировано под iPhone */
+:root {
+  --bg: #0a0a0a;
+  --fg: #e6e6e6;
+  --mute: #7a7a7a;
+  --line: #242424;
+  --field: #141414;
+  --acc: #f2f2f2;
+  --done: #555;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 12px 32px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+header.top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap;
+}
+.brand { font-size: 18px; font-weight: 600; letter-spacing: 0.02em; }
+nav.tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.tab {
+  background: none; border: 1px solid transparent; color: var(--mute);
+  font: inherit; font-size: 14px; padding: 7px 12px; border-radius: 999px; cursor: pointer;
+}
+.tab.on { color: var(--acc); border-color: var(--line); background: var(--field); }
+main { padding-top: 18px; max-width: 640px; margin: 0 auto; }
+h2 {
+  font-size: 12px; font-weight: 500; color: var(--mute); text-transform: uppercase;
+  letter-spacing: 0.08em; margin: 26px 0 6px;
+}
+h2:first-child { margin-top: 0; }
+.row { display: flex; gap: 8px; align-items: center; }
+.stack { display: flex; flex-direction: column; gap: 10px; }
+/* 16px on inputs stops iOS Safari from zooming in on focus */
+input, textarea, select {
+  width: 100%; min-width: 0; background: var(--field); color: var(--fg);
+  border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+  font: inherit; font-size: 16px; outline: none; color-scheme: dark;
+  -webkit-appearance: none; appearance: none;
+}
+input[type="checkbox"] { width: 20px; height: 20px; padding: 0; flex: none; accent-color: #f2f2f2; }
+input[type="file"] { color: var(--mute); padding: 10px 0; border: none; background: none; font-size: 14px; }
+input:focus, textarea:focus { border-color: #444; }
+input::placeholder, textarea::placeholder { color: #555; }
+button.btn {
+  background: var(--acc); color: #0a0a0a; border: none; border-radius: 12px;
+  padding: 12px 16px; font: inherit; font-weight: 600; cursor: pointer; white-space: nowrap;
+}
+button.btn.ghost { background: none; color: var(--mute); border: 1px solid var(--line); font-weight: 400; }
+button:focus-visible { outline: 1px solid #888; outline-offset: 2px; }
+.check-row { display: flex; align-items: center; gap: 10px; color: var(--mute); font-size: 15px; }
+.list { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.item {
+  display: flex; gap: 12px; align-items: flex-start; padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.item .body { flex: 1; min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.item .meta { color: var(--mute); font-size: 13px; margin-top: 2px; }
+.x {
+  background: none; border: none; color: #555; font: inherit; font-size: 20px;
+  line-height: 1; padding: 4px 6px; cursor: pointer; flex: none;
+}
+.x.armed { color: var(--fg); font-size: 13px; }
+.check {
+  width: 22px; height: 22px; flex: none; margin-top: 1px; border-radius: 7px;
+  border: 1px solid #444; background: none; cursor: pointer; color: var(--fg); font-size: 13px; padding: 0;
+}
+.check.on { background: var(--acc); border-color: var(--acc); color: #0a0a0a; }
+.done .body { color: var(--done); text-decoration: line-through; }
+.empty { color: #555; padding: 18px 0; font-size: 15px; }
+.hint { color: #555; font-size: 13px; margin: 4px 0 0; }
+.data-box { min-height: 140px; font-size: 13px; font-family: ui-monospace, Menlo, monospace; }
+
+/* Notes: the field itself is the note */
+.note-new { min-height: 120px; border-style: dashed; background: none; resize: none; overflow: hidden; }
+.note-row { display: flex; gap: 8px; align-items: flex-start; border-bottom: 1px solid var(--line); padding: 4px 0; }
+textarea.note {
+  flex: 1; min-width: 0; background: none; border: none; border-radius: 0;
+  padding: 8px 0; resize: none; overflow: hidden; line-height: 1.5;
+}
+textarea.note:focus, textarea.note-new:focus { border-color: #444; }
+textarea.note.h { font-size: 21px; font-weight: 600; line-height: 1.3; padding-top: 10px; }
+
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.seg button {
+  background: var(--field); border: 1px solid var(--line); color: var(--mute);
+  border-radius: 12px; padding: 11px; font: inherit; cursor: pointer;
+}
+.seg button.on { color: var(--acc); border-color: #444; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stat { border: 1px solid var(--line); border-radius: 14px; padding: 14px; background: var(--field); min-width: 0; }
+.stat .k { color: var(--mute); font-size: 13px; }
+.stat .v { font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.bar { height: 4px; background: var(--line); border-radius: 999px; overflow: hidden; margin-top: 8px; }
+.bar i { display: block; height: 100%; background: var(--acc); width: 0; }
+.amt { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.amt.in { color: var(--acc); }
+.pct { color: var(--mute); font-size: 13px; font-variant-numeric: tabular-nums; }
+.goal { flex-direction: column; gap: 8px; }

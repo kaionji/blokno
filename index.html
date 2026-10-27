@@ -1,0 +1,102 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Блокно</title>
+<link rel="stylesheet" href="app.css">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Блокно">
+<meta name="theme-color" content="#0a0a0a">
+
+<header class="top">
+  <span class="brand">Блокно</span>
+  <nav class="tabs">
+    <button class="tab on" data-tab="notes">Заметки</button>
+    <button class="tab" data-tab="tasks">Задачи</button>
+    <button class="tab" data-tab="budget">Бюджет</button>
+    <button class="tab" data-tab="plans">Планы</button>
+  </nav>
+</header>
+
+<main>
+  <!-- NOTES -->
+  <section data-view="notes">
+    <textarea id="noteNew" class="note-new" placeholder="Пишите здесь. Строка «# Название» станет заголовком."></textarea>
+    <div id="noteList"></div>
+  </section>
+
+  <!-- TASKS -->
+  <section data-view="tasks" hidden>
+    <div class="stack">
+      <div class="row">
+        <input id="taskText" placeholder="Новая задача">
+        <button class="btn" id="taskAdd">Добавить</button>
+      </div>
+      <input id="taskDate" type="date">
+    </div>
+    <div id="taskGroups"></div>
+  </section>
+
+  <!-- BUDGET -->
+  <section data-view="budget" hidden>
+    <div class="stats">
+      <div class="stat"><div class="k">Баланс</div><div class="v" id="balance">0 ₽</div></div>
+      <div class="stat"><div class="k">Расходы за месяц</div><div class="v" id="monthOut">0 ₽</div></div>
+    </div>
+
+    <h2>Новая запись</h2>
+    <div class="stack">
+      <div class="seg" id="txType">
+        <button data-type="expense" class="on">Расход</button>
+        <button data-type="income">Доход</button>
+      </div>
+      <input id="txAmount" type="number" inputmode="decimal" placeholder="Сумма">
+      <input id="txCat" placeholder="Категория, например «Еда»">
+      <input id="txNote" placeholder="Комментарий (необязательно)">
+      <input id="txDate" type="date">
+      <label class="check-row"><input id="txRepeat" type="checkbox"> Повторять каждый месяц</label>
+      <div><button class="btn" id="txAdd">Записать</button></div>
+    </div>
+
+    <h2>По категориям за месяц</h2>
+    <div id="catList"></div>
+
+    <div id="recurWrap" hidden>
+      <h2>Повторяющиеся</h2>
+      <div class="list" id="recurList"></div>
+    </div>
+
+    <div id="txGroups"></div>
+
+    <h2>Синхронизация с ноутбуком</h2>
+    <div class="stack">
+      <input id="syncUrl" type="url" inputmode="url" placeholder="Адрес сервера, например https://...">
+      <input id="syncToken" type="password" placeholder="Токен">
+      <div><button class="btn ghost" id="syncBtn">Подключить</button></div>
+      <p class="hint" id="syncStatus">не подключено</p>
+    </div>
+
+    <h2>Копия данных</h2>
+    <div class="stack">
+      <button class="btn ghost" id="exportBtn">Показать копию</button>
+      <textarea id="dataBox" class="data-box" hidden placeholder="Здесь появится копия данных"></textarea>
+      <div class="row" id="copyRow" hidden>
+        <button class="btn ghost" id="copyBtn">Скопировать</button>
+      </div>
+      <input id="importFile" type="file" accept=".json,application/json">
+      <button class="btn ghost" id="importBtn">Загрузить копию</button>
+      <p class="hint">Копия содержит все заметки, задачи, операции и цели. Скопируйте текст и сохраните его в Заметках iPhone. Чтобы восстановить, выберите файл или вставьте текст в поле выше и нажмите «Загрузить копию». Текущие данные при этом заменятся.</p>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section data-view="plans" hidden>
+    <div class="stack">
+      <input id="goalName" placeholder="Цель, например «Отпуск»">
+      <input id="goalTarget" type="number" inputmode="decimal" placeholder="Сумма цели">
+      <div><button class="btn" id="goalAdd">Создать</button></div>
+    </div>
+    <div class="list" id="goalList"></div>
+  </section>
+</main>
+
+<script src="app.js"></script>
